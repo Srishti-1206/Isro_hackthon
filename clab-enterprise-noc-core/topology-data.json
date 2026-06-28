@@ -1,0 +1,147 @@
+{
+  "name": "enterprise-noc-core",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "bridge",
+        "bridge": "docker0",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.17.0.1",
+        "ipv6-gw": "fe80::cc74:40ff:fef3:6e2",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": [],
+  "nodes": {
+    "branch-1": {
+      "index": "0",
+      "shortname": "branch-1",
+      "longname": "clab-enterprise-noc-core-branch-1",
+      "fqdn": "branch-1.enterprise-noc-core.io",
+      "group": "",
+      "labdir": "/home/sanjana/noc-copilot/clab-enterprise-noc-core/branch-1",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:9.1.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.17.0.3",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "docker0",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/sanjana/noc-copilot/clab-enterprise-noc-core/branch-1",
+        "clab-node-longname": "clab-enterprise-noc-core-branch-1",
+        "clab-node-name": "branch-1",
+        "clab-node-type": "",
+        "clab-owner": "sanjana",
+        "clab-topo-file": "/home/sanjana/noc-copilot/topology.clab.yml",
+        "containerlab": "enterprise-noc-core"
+      },
+      "port-bindings": [
+      ]
+    },
+    "dc-hub": {
+      "index": "1",
+      "shortname": "dc-hub",
+      "longname": "clab-enterprise-noc-core-dc-hub",
+      "fqdn": "dc-hub.enterprise-noc-core.io",
+      "group": "",
+      "labdir": "/home/sanjana/noc-copilot/clab-enterprise-noc-core/dc-hub",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:9.1.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.17.0.2",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "docker0",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/sanjana/noc-copilot/clab-enterprise-noc-core/dc-hub",
+        "clab-node-longname": "clab-enterprise-noc-core-dc-hub",
+        "clab-node-name": "dc-hub",
+        "clab-node-type": "",
+        "clab-owner": "sanjana",
+        "clab-topo-file": "/home/sanjana/noc-copilot/topology.clab.yml",
+        "containerlab": "enterprise-noc-core"
+      },
+      "port-bindings": [
+      ]
+    },
+    "p1": {
+      "index": "2",
+      "shortname": "p1",
+      "longname": "clab-enterprise-noc-core-p1",
+      "fqdn": "p1.enterprise-noc-core.io",
+      "group": "",
+      "labdir": "/home/sanjana/noc-copilot/clab-enterprise-noc-core/p1",
+      "kind": "linux",
+      "image": "quay.io/frrouting/frr:9.1.0",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.17.0.4",
+      "mgmt-ipv4-prefix-length": 16,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "docker0",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/sanjana/noc-copilot/clab-enterprise-noc-core/p1",
+        "clab-node-longname": "clab-enterprise-noc-core-p1",
+        "clab-node-name": "p1",
+        "clab-node-type": "",
+        "clab-owner": "sanjana",
+        "clab-topo-file": "/home/sanjana/noc-copilot/topology.clab.yml",
+        "containerlab": "enterprise-noc-core"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "dc-hub",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:2a:9e:64",
+          "peer": "z"
+        },
+        "z": {
+          "node": "p1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:8b:2c:8d",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "branch-1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:d0:70:bb",
+          "peer": "z"
+        },
+        "z": {
+          "node": "p1",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:3e:32:61",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}

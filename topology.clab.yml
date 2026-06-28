@@ -1,0 +1,24 @@
+name: enterprise-noc-core
+mgmt:
+  network: bridge
+  ipv4-subnet: 172.20.20.0/24
+topology:
+  defaults:
+    kind: linux
+    image: quay.io/frrouting/frr:9.1.0
+    binds:
+      - ./configs/daemons:/etc/frr/daemons
+  nodes:
+    p1:
+      binds:
+        - ./configs/p1.conf:/etc/frr/frr.conf
+    dc-hub:
+      binds:
+        - ./configs/dc-hub.conf:/etc/frr/frr.conf
+    branch-1:
+      binds:
+        - ./configs/branch-1.conf:/etc/frr/frr.conf
+
+  links:
+    - endpoints: ["dc-hub:eth1", "p1:eth1"]
+    - endpoints: ["branch-1:eth1", "p1:eth2"]

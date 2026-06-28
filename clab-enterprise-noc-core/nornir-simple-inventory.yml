@@ -1,0 +1,16 @@
+---
+branch-1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.17.0.3
+dc-hub:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.17.0.2
+p1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.17.0.4
