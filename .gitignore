@@ -1,1 +1,4 @@
 sample.log
+__pycache__/
+*.pyc
+backend/metrics.csv
