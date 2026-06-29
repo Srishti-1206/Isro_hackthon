@@ -18,7 +18,11 @@ topology:
     branch-1:
       binds:
         - ./configs/branch-1.conf:/etc/frr/frr.conf
+    prometheus:
+      kind: linux
+      image: prom/prometheus:latest
 
   links:
     - endpoints: ["dc-hub:eth1", "p1:eth1"]
     - endpoints: ["branch-1:eth1", "p1:eth2"]
+  
