@@ -1,4 +1,4 @@
-# ISRO Hackathon NOC Copilot
+# Net VigilAnz : ISRO Hackathon NOC Copilot
 
 Local predictive AIOps/NOC copilot for network incident simulation, telemetry analysis, and remediation playbook selection. The project combines scenario fixtures, Prometheus metric collection, Prophet-style forecasting, and a local Ollama LLM workflow.
 
