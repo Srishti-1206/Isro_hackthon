@@ -1,4 +1,39 @@
-sample.log
+# Python cache/build artifacts
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local configuration/secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Logs and generated runtime data
+*.log
+logs/
+network-brain/logs/
 backend/metrics.csv
+metrics.csv
+
+# Containerlab/runtime generated files
+clab-*/
+*.bak
+*.tmp
+
+# Editor/OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
