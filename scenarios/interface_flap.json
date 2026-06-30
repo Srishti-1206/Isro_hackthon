@@ -1,0 +1,27 @@
+{
+  "scenario_id": "interface_flap",
+  "fault_domain": "interface",
+  "severity": "major",
+  "affected_nodes": ["clab-enterprise-noc-core-branch-1"],
+  "affected_interfaces": ["eth0"],
+  "affected_services": ["branch-1-wan", "branch-1-voice"],
+  "telemetry": {
+    "oper_state_changes_last_15m": 17,
+    "crc_errors_last_15m": 721,
+    "carrier_transitions_last_15m": 17,
+    "link_speed_observed": "1Gbps",
+    "duplex_observed": "full"
+  },
+  "forecast": {
+    "algorithm": "interface_event_regression",
+    "trend": "carrier transitions accelerating and CRC errors rising",
+    "threshold": "oper_state_changes_last_15m >= 10",
+    "estimated_time_to_impact_seconds": 240,
+    "confidence": 0.86
+  },
+  "ground_truth": {
+    "predicted_issue_type": "interface_flapping",
+    "root_cause": "branch-1 eth0 physical link instability is likely causing intermittent WAN loss"
+  },
+  "expected_remediation_type": "interface_flap"
+}

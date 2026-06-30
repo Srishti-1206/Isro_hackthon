@@ -1,0 +1,12 @@
+{
+  "playbook_id": "memory_leak",
+  "name": "Contain Control-Plane Memory Leak",
+  "action_type": "mitigate",
+  "requires_human_approval": true,
+  "summary": "Preserve diagnostics, reduce nonessential load, and schedule controlled service restart only after approval.",
+  "approved_actions": [
+    "capture_process_snapshot",
+    "notify_platform_oncall",
+    "restart_control_plane_process_after_approval"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "playbook_id": "mpls_underlay_degradation",
+  "name": "Protect Services During MPLS Underlay Degradation",
+  "action_type": "mitigate",
+  "requires_human_approval": true,
+  "summary": "Shift sensitive traffic away from degraded underlay and escalate carrier-facing evidence.",
+  "approved_actions": [
+    "notify_wan_oncall",
+    "collect_tunnel_health_snapshot",
+    "prefer_backup_overlay_path_after_approval"
+  ]
+}

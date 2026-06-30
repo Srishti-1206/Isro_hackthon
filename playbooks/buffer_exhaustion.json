@@ -1,0 +1,12 @@
+{
+  "playbook_id": "buffer_exhaustion",
+  "name": "Preempt Hub-Spoke Buffer Exhaustion",
+  "action_type": "mitigate",
+  "requires_human_approval": true,
+  "summary": "Rate-limit or reschedule bulk traffic, inspect QoS policy, and protect voice/control-plane queues.",
+  "approved_actions": [
+    "notify_noc_queue_owner",
+    "review_qos_policy",
+    "throttle_backup_flow_after_approval"
+  ]
+}

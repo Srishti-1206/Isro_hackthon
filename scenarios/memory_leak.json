@@ -1,0 +1,27 @@
+{
+  "scenario_id": "memory_leak",
+  "fault_domain": "memory",
+  "severity": "major",
+  "affected_nodes": ["clab-enterprise-noc-core-dc-hub"],
+  "affected_interfaces": [],
+  "affected_services": ["routing-control-plane", "telemetry-export"],
+  "telemetry": {
+    "memory_used_percent": 87,
+    "memory_growth_percent_per_hour": 9.5,
+    "swap_used_percent": 41,
+    "top_process": "frr-bgpd",
+    "oom_kill_events_last_1h": 0
+  },
+  "forecast": {
+    "algorithm": "Prophet",
+    "trend": "memory utilization rising monotonically with no matching traffic growth",
+    "threshold": "memory_used_percent >= 95",
+    "estimated_time_to_impact_seconds": 2700,
+    "confidence": 0.84
+  },
+  "ground_truth": {
+    "predicted_issue_type": "control_plane_memory_leak",
+    "root_cause": "bgpd memory growth suggests a control-plane process leak before service exhaustion"
+  },
+  "expected_remediation_type": "memory_leak"
+}

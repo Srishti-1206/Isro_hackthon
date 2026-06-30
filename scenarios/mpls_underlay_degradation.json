@@ -1,0 +1,27 @@
+{
+  "scenario_id": "mpls_underlay_degradation",
+  "fault_domain": "underlay",
+  "severity": "critical",
+  "affected_nodes": ["clab-enterprise-noc-core-p1", "clab-enterprise-noc-core-branch-1"],
+  "affected_interfaces": ["p1:eth1", "branch-1:eth0"],
+  "affected_services": ["sdwan-ipsec-overlay", "voice", "transaction-apps"],
+  "telemetry": {
+    "underlay_packet_loss_percent": 4.8,
+    "jitter_ms_p95": 71,
+    "ipsec_rekeys_last_10m": 9,
+    "tunnel_probe_failures_last_10m": 22,
+    "latency_ms_p95": 168
+  },
+  "forecast": {
+    "algorithm": "tunnel_health_degradation_score",
+    "trend": "loss and jitter are rising together with repeated tunnel rekeys",
+    "threshold": "underlay_packet_loss_percent >= 5",
+    "estimated_time_to_impact_seconds": 300,
+    "confidence": 0.9
+  },
+  "ground_truth": {
+    "predicted_issue_type": "mpls_underlay_degradation",
+    "root_cause": "MPLS underlay loss is degrading SD-WAN overlay tunnel health"
+  },
+  "expected_remediation_type": "mpls_underlay_degradation"
+}

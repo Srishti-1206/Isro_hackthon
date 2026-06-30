@@ -1,0 +1,28 @@
+{
+  "scenario_id": "bgp_route_flap",
+  "fault_domain": "routing",
+  "severity": "major",
+  "affected_nodes": ["clab-enterprise-noc-core-p1", "clab-enterprise-noc-core-dc-hub"],
+  "affected_interfaces": ["p1:eth2", "dc-hub:eth0"],
+  "affected_services": ["mpls-vpn-corp", "branch-1-reachability"],
+  "telemetry": {
+    "neighbor": "10.255.0.2",
+    "asn": 65010,
+    "session_resets_last_10m": 11,
+    "prefix_withdrawals_last_10m": 184,
+    "best_path_changes_last_10m": 39,
+    "last_bgp_notification": "hold timer expired"
+  },
+  "forecast": {
+    "algorithm": "rolling_route_stability_score",
+    "trend": "BGP convergence churn increasing with downstream reroute cascade risk",
+    "threshold": "session_resets_last_10m >= 8",
+    "estimated_time_to_impact_seconds": 180,
+    "confidence": 0.88
+  },
+  "ground_truth": {
+    "predicted_issue_type": "bgp_route_flapping",
+    "root_cause": "unstable BGP peering between p1 and dc-hub is causing repeated route withdrawals"
+  },
+  "expected_remediation_type": "bgp_route_flap"
+}

@@ -1,0 +1,12 @@
+{
+  "playbook_id": "bgp_route_flap",
+  "name": "Stabilize BGP Route Flapping",
+  "action_type": "mitigate",
+  "requires_human_approval": true,
+  "summary": "Confirm peer health, inspect hold timers and link quality, then apply damping or isolate unstable advertisements.",
+  "approved_actions": [
+    "notify_routing_oncall",
+    "capture_bgp_neighbor_detail",
+    "apply_route_damping_after_approval"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "playbook_id": "interface_flap",
+  "name": "Investigate WAN Interface Flapping",
+  "action_type": "notify",
+  "requires_human_approval": true,
+  "summary": "Correlate carrier transitions with CRC errors and dispatch physical link investigation before SLA impact.",
+  "approved_actions": [
+    "notify_site_contact",
+    "capture_interface_counters",
+    "move_traffic_to_backup_path_after_approval"
+  ]
+}

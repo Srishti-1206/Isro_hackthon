@@ -1,0 +1,27 @@
+{
+  "scenario_id": "buffer_exhaustion",
+  "fault_domain": "qos",
+  "severity": "critical",
+  "affected_nodes": ["clab-enterprise-noc-core-dc-hub"],
+  "affected_interfaces": ["eth1"],
+  "affected_services": ["branch-1-erp", "branch-1-voice"],
+  "telemetry": {
+    "current_queue_depth_percent": 94,
+    "active_drops_per_second": 48.2,
+    "egress_rate_mbps": 940,
+    "configured_shaper_mbps": 1000,
+    "top_talker": "branch-1-backup-flow"
+  },
+  "forecast": {
+    "algorithm": "Prophet",
+    "trend": "outbound traffic expanding at +240Mbps/min",
+    "threshold": "queue_depth_percent >= 100",
+    "estimated_time_to_impact_seconds": 360,
+    "confidence": 0.91
+  },
+  "ground_truth": {
+    "predicted_issue_type": "network_buffer_exhaustion",
+    "root_cause": "sustained backup traffic is saturating dc-hub eth1 egress queue"
+  },
+  "expected_remediation_type": "buffer_exhaustion"
+}
