@@ -15,6 +15,10 @@ SCENARIO_DIR = BASE_DIR / "scenarios"
 PLAYBOOK_DIR = BASE_DIR / "playbooks"
 PROMETHEUS_URL = "http://localhost:9090/api/v1/query"
 DEFAULT_MODEL = "qwen3:8b"
+SCENARIO_ALIASES = {
+    "network_buffer_exhaustion": "buffer_exhaustion",
+    "memory_leak_decay": "memory_leak",
+}
 
 REQUIRED_REPORT_FIELDS = {
     "incident_id": str,
@@ -50,6 +54,7 @@ def load_json_file(path):
 
 
 def load_scenario(scenario_id):
+    scenario_id = SCENARIO_ALIASES.get(scenario_id, scenario_id)
     scenario_path = SCENARIO_DIR / f"{scenario_id}.json"
     if not scenario_path.exists():
         available = ", ".join(list_scenarios()) or "none"
@@ -288,6 +293,30 @@ def parse_or_fallback_report(raw_response, telemetry_envelope):
     except json.JSONDecodeError as exc:
         fallback_report = build_deterministic_report(telemetry_envelope)
         return fallback_report, [f"LLM returned non-JSON; used deterministic scenario report ({exc})"]
+
+
+def run_phase6_simulation(scenario_name, model=DEFAULT_MODEL):
+    """
+    Native-app friendly Phase 6 entry point. Runs a named simulation scenario
+    through the local AI decision path and always returns a Python dictionary.
+    """
+    scenario = load_scenario(scenario_name)
+    telemetry_envelope = build_incident_envelope("phase6_simulation", scenario)
+    start_time = time.time()
+    raw_ai_report = run_ai_decision_engine(telemetry_envelope, model=model)
+    processing_duration = time.time() - start_time
+
+    parsed_report, parse_warnings = parse_or_fallback_report(raw_ai_report, telemetry_envelope)
+    schema_errors = validate_report_schema(parsed_report)
+    playbook_id = parsed_report.get("recommended_action", {}).get("playbook_id")
+    parsed_report["_runtime"] = {
+        "processing_seconds": round(processing_duration, 2),
+        "parse_warnings": parse_warnings,
+        "schema_errors": schema_errors,
+        "scenario_source": scenario.get("scenario_id", scenario_name),
+    }
+    parsed_report["_playbook"] = load_playbook(playbook_id) if playbook_id else None
+    return parsed_report
 
 
 def validate_report_schema(report):
