@@ -40,7 +40,7 @@ SCENARIO_OPTIONS = [
 class NocCopilotGui(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.title("noc-copilot | Local Predictive AIOps Console")
+        self.title("Net VigilAnz | Air-Gapped Predictive Copilot for Secure MPLS Operations")
         self.geometry(f"{APP_WIDTH}x{APP_HEIGHT}")
         self.minsize(1000, 620)
         self.configure(fg_color=COLOR_BG)
@@ -69,7 +69,7 @@ class NocCopilotGui(customtkinter.CTk):
 
         title = customtkinter.CTkLabel(
             self.sidebar,
-            text="NOC COPILOT",
+            text="Net VigilAnz",
             font=customtkinter.CTkFont(size=28, weight="bold"),
             text_color=COLOR_WHITE,
         )
@@ -77,9 +77,11 @@ class NocCopilotGui(customtkinter.CTk):
 
         subtitle = customtkinter.CTkLabel(
             self.sidebar,
-            text="Air-gapped Phase 6 analysis",
+            text="Air-Gapped Predictive Copilot for Secure MPLS Operations",
             font=customtkinter.CTkFont(size=14),
             text_color=COLOR_CYAN,
+            wraplength=240,
+            justify="left",
         )
         subtitle.grid(row=1, column=0, padx=26, pady=(0, 34), sticky="w")
 
@@ -378,7 +380,7 @@ class NocCopilotGui(customtkinter.CTk):
         self.scope_value.configure(text="The backend returned an error.")
         self.status_label.configure(text="Status: error", text_color=COLOR_RED)
         self._set_playbook_text(error_text)
-        messagebox.showerror("NOC Copilot", error_text)
+        messagebox.showerror("Net VigilAnz", error_text)
 
     def _set_playbook_text(self, text):
         self.playbook_box.configure(state="normal")

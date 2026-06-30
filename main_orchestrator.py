@@ -355,7 +355,8 @@ def validate_report_schema(report):
 
 
 def run_pipeline(args):
-    print("🚀 Initializing Live Predictive-AIOps NOC Copilot Orchestrator...")
+    print("🚀 Initializing Net VigilAnz Orchestrator...")
+    print("Air-Gapped Predictive Copilot for Secure MPLS Operations")
     print("---------------------------------------------------------------------")
 
     combined_telemetry = fetch_live_and_predictive_telemetry(args.scenario)
@@ -389,7 +390,9 @@ def run_pipeline(args):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Air-gapped Predictive-AIOps NOC Copilot orchestrator")
+    parser = argparse.ArgumentParser(
+        description="Net VigilAnz - Air-Gapped Predictive Copilot for Secure MPLS Operations"
+    )
     parser.add_argument("--scenario", default="buffer_exhaustion", help="Phase 6 fallback scenario id")
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Local Ollama model tag")
     parser.add_argument("--list-scenarios", action="store_true", help="List available Phase 6 scenarios")
